@@ -1,7 +1,7 @@
 <template>
   <v-form @submit.prevent="submitForm">
     <v-text-field
-      v-model="title"
+      v-model="name"
       label="Title"
       required
     ></v-text-field>
@@ -14,7 +14,7 @@
     </v-radio-group>
 
     <v-text-field
-      v-model.number="time"
+      v-model.number="averageEvaluationTime"
       type="number" 
       label="Time, s"
       required
@@ -22,25 +22,28 @@
 
     <v-subheader class="pl-0">CPU, %</v-subheader>
     <v-slider
-      v-model="cpu"
+      v-model="cpuConsumption"
       :thumb-size="20"
       thumb-label="always"
     ></v-slider>
 
     <v-text-field
-      v-model="memory"
-      label="Memory"
+      v-model.number="memoryConsumption"
+      type="number" 
+      label="Memory, Mb"
       required
     ></v-text-field>
 
     <v-text-field
-      v-model="disk"
-      label="Disk"
+      v-model.number="discIO"
+      type="number" 
+      label="Disc, Mb"
       required
     ></v-text-field>
 
     <v-text-field
-      v-model="network"
+      v-model.number="networkIO"
+      type="number" 
       label="Network"
       required
     ></v-text-field>
@@ -64,13 +67,13 @@
     },
     data() {
       return {
-        title: this.task ? this.task.title : '',
+        name: this.task ? this.task.name : '',
         priority: this.task ? this.task.priority : 'middle',
-        time: this.task ? this.task.time : null,
-        cpu: this.task ? this.task.cpu : 0,
-        memory: this.task ? this.task.memory : '',
-        disk: this.task ? this.task.disk : '',
-        network: this.task ? this.task.network : '',
+        averageEvaluationTime: this.task ? this.task.averageEvaluationTime : null,
+        cpuConsumption: this.task ? this.task.cpuConsumption : 0,
+        memoryConsumption: this.task ? this.task.memoryConsumption : '',
+        discIO: this.task ? this.task.discIO : '',
+        networkIO: this.task ? this.task.networkIO : '',
       }
     },
     computed: {
@@ -80,15 +83,25 @@
     },
     methods: {
       prepareData() {
+        // return {
+        //   id: uuidv4(),
+        //   title: this.title,
+        //   priority: this.priority,
+        //   time: this.time,
+        //   cpu: this.cpu,
+        //   memory: this.memory,
+        //   disk: this.disk,
+        //   network: this.network,
+        // }
         return {
           id: uuidv4(),
-          title: this.title,
+          name: this.name,
           priority: this.priority,
-          time: this.time,
-          cpu: this.cpu,
-          memory: this.memory,
-          disk: this.disk,
-          network: this.network,
+          averageEvaluationTime: this.averageEvaluationTime,
+          cpuConsumption: this.cpuConsumption,
+          memoryConsumption: this.memoryConsumption,
+          discIO: this.discIO,
+          networkIO: this.networkIO,
         }
       },      
       submitForm() {

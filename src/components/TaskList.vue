@@ -2,12 +2,12 @@
   <v-list class="pb-0" two-line subheader>
     <v-list-item
       v-for="item in items"
-      :key="item.title"
+      :key="item.id"
       @click="$router.push({ name: 'Task', params: { id: item.id } })"
     >
 
       <v-list-item-content>
-        <v-list-item-title v-text="item.title"></v-list-item-title>
+        <v-list-item-title v-text="item.name"></v-list-item-title>
       </v-list-item-content>
 
       <v-icon 

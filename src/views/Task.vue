@@ -14,7 +14,7 @@
           />
 
           <v-card v-if="item && !isItemEditing">
-            <v-card-title class="text-center">{{ item.title }}</v-card-title>
+            <v-card-title class="text-center">{{ item.name }}</v-card-title>
 
             <v-card-text class="text--primary">
               <v-container>  
@@ -23,19 +23,19 @@
                   <v-col cols="6" class="text-right">{{ item.priority }}</v-col>
 
                   <v-col cols="6">Time</v-col>
-                  <v-col cols="6" class="text-right">{{ item.time }}</v-col>
+                  <v-col cols="6" class="text-right">{{ item.averageEvaluationTime }}</v-col>
                   
                   <v-col cols="6">CPU</v-col>
-                  <v-col cols="6" class="text-right">{{ item.cpu }}</v-col>
+                  <v-col cols="6" class="text-right">{{ item.cpuConsumption }}</v-col>
                   
                   <v-col cols="6">Memory</v-col>
-                  <v-col cols="6" class="text-right">{{ item.memory }}</v-col>
+                  <v-col cols="6" class="text-right">{{ item.memoryConsumption }}</v-col>
                   
                   <v-col cols="6">Disk</v-col>
-                  <v-col cols="6" class="text-right">{{ item.disk }}</v-col>
+                  <v-col cols="6" class="text-right">{{ item.discIO }}</v-col>
                   
                   <v-col cols="6">Network</v-col>
-                  <v-col cols="6" class="text-right">{{ item.network }}</v-col>
+                  <v-col cols="6" class="text-right">{{ item.networkIO }}</v-col>
                 </v-row>
               </v-container>
             </v-card-text>
@@ -89,15 +89,25 @@
         this.isItemEditing = false;
       },
       prepareData(updatedTask) {
+        // return {
+        //   id: updatedTask.id,
+        //   title: updatedTask.title,
+        //   priority: updatedTask.priority,
+        //   time: updatedTask.time,
+        //   cpu: updatedTask.cpu,
+        //   memory: updatedTask.memory,
+        //   disk: updatedTask.disk,
+        //   network: updatedTask.network,
+        // }
         return {
           id: updatedTask.id,
-          title: updatedTask.title,
+          name: updatedTask.name,
           priority: updatedTask.priority,
-          time: updatedTask.time,
-          cpu: updatedTask.cpu,
-          memory: updatedTask.memory,
-          disk: updatedTask.disk,
-          network: updatedTask.network,
+          averageEvaluationTime: updatedTask.averageEvaluationTime,
+          cpuConsumption: updatedTask.cpuConsumption,
+          memoryConsumption: updatedTask.memoryConsumption,
+          discIO: updatedTask.discIO,
+          networkIO: updatedTask.networkIO,
         }
       },
       updateTask(updatedTask) {

@@ -1,14 +1,9 @@
 import axios from 'axios'
 
-const url = 'https://jsonplaceholder.typicode.com/posts'
-
 export const getTasks = async () => {
   const options = {
     method: 'get',
-    url: url,
-    params: {
-      _limit: 5
-    }
+    url: 'localhost:8080/task-manager/tasks',
   }
   try {
     const response = await axios(options);
@@ -22,7 +17,7 @@ export const getTasks = async () => {
 export const getTask = async (id) => {
   const options = {
     method: 'get',
-    url: `${url}/${id}` 
+    url: `localhost:8080/task-manager/task/${id}` 
   }
   try {
     const response = await axios(options);
@@ -36,7 +31,7 @@ export const getTask = async (id) => {
 export const postTask = async (task) => {
   const options = {
     method: 'post',
-    url: url,
+    url: 'localhost:8080/task-manager/task',
     data: task
   }
   try {
@@ -50,8 +45,8 @@ export const postTask = async (task) => {
 
 export const updateTask = async (task) => {
   const options = {
-    method: 'patch',
-    url: `${url}/${task.id}`,
+    method: 'put',
+    url: `localhost:8080/task-manager/task`,
     data: task
   }
   try {
@@ -66,11 +61,11 @@ export const updateTask = async (task) => {
 export const removeTask = async (id) => {
   const options = {
     method: 'delete',
-    url: `${url}/${id}`
+    url: `localhost:8080/task-manager/task/${id}`
   }
   try {
     const response = await axios(options);
-    const data = await response.data
+    const data = await response.data;
     console.log(`Delete task `, data );
   } catch (error) {
     throw new Error(error)
