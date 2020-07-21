@@ -47,7 +47,7 @@
 
     <div class="d-flex">
       <v-btn class="mx-auto" color="primary" type="submit">{{ submitButtonText }}</v-btn>
-      <v-btn v-if="task" class="mx-auto" @click="$emit('onCancel')" type="submit">Cancel</v-btn>
+      <v-btn class="mx-auto" @click="$emit('onCancel')" type="submit">Cancel</v-btn>
     </div>
   </v-form>
 </template>
@@ -59,7 +59,7 @@
     name: 'AppForm',
     props: {
       task: {
-        type: Object
+        type: Object,
       }
     },
     data() {
@@ -75,7 +75,7 @@
     },
     computed: {
       submitButtonText() {
-        return this.task ? 'Update Task' : 'Add New Task'
+        return this.task ? 'Update Task' : 'Add New Task';
       },
     },
     methods: {
@@ -93,7 +93,7 @@
       },      
       submitForm() {
         const data = this.prepareData();
-        this.task ? this.updateTask(data) : this.addTask(data)
+        this.task ? this.updateTask(data) : this.addTask(data);
       },
       addTask(data) {
         this.$emit('onTaskAdded', data);
@@ -115,7 +115,3 @@
     },
   }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
